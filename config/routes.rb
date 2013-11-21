@@ -1,4 +1,6 @@
 PresenzeVolley::Application.routes.draw do
+  resources :participations
+
   resources :players
 
   resources :trainings
