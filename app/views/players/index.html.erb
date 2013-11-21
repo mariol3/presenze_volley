@@ -4,7 +4,6 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Password digest</th>
       <th>Avatar url</th>
       <th></th>
       <th></th>
@@ -16,7 +15,6 @@
     <% @players.each do |player| %>
       <tr>
         <td><%= player.name %></td>
-        <td><%= player.password_digest %></td>
         <td><%= player.avatar_url %></td>
         <td><%= link_to 'Show', player %></td>
         <td><%= link_to 'Edit', edit_player_path(player) %></td>
