@@ -5,18 +5,14 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:date) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @trainings.each do |training| %>
       <tr>
-        <td><%= link_to training.id, training_path(training) %></td>
         <td><%= training.date %></td>
-        <td><%=l training.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_training_path(training), :class => 'btn btn-mini' %>
