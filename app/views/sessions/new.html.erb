@@ -1,0 +1,21 @@
+<%= form_tag do %>
+  <fieldset>
+    <legend>Inserire nome e password</legend>
+    <div class="control-group">
+      <%= label_tag :name, 'Name', :class => 'control-label' %>
+      <div class="controls">
+        <%= text_field_tag :name, nil, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= label_tag :password, 'Password', :class => 'control-label' %>
+      <div class="controls">
+        <%= password_field_tag :password, nil, :class => 'password_field' %>
+      </div>
+    </div>
+  </fieldset>
+  
+  <div class="form-actions">
+    <%= submit_tag 'Login', :class => 'btn btn-primary' %>
+  </div>
+<% end %>
