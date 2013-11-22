@@ -45,3 +45,7 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 # gem 'debugger', group: [:development, :test]
 
 # gem 'protected_attributes'
+
+gem "therubyracer"
+gem "less-rails" 
+gem "twitter-bootstrap-rails"
