@@ -1,5 +1,9 @@
 PresenzeVolley::Application.routes.draw do
  
+  controller :welcome do
+    get 'home' => :index
+  end
+  
   controller :sessions do
     get 'login' => :new
     post 'login' => :create

@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   
     def authorize
       unless Player.find_by_id(session[:player_id])
-        redirect_to login_url, alert: "Effetuare il login"
+        redirect_to :home
       end
     end
   
