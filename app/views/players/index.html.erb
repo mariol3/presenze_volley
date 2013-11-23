@@ -1,13 +1,13 @@
 <%- model_class = Player -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1><%=t '.title', :default => model_class.model_name.human(count: 2).titleize %></h1>
 </div>
 <table class="table table-striped">
   <thead>
     <tr>
       <th></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <% if @logger_player && @logger_player.role == 'admin' %>
+      <% if @logged_player && @logged_player.role == 'admin' %>
         <th><%=t '.actions', :default => t("helpers.actions") %></th>
       <% end %>
     </tr>
@@ -18,7 +18,7 @@
         <td><%= image_tag(player.avatar_url || 'default_avatar.png', class: 'img-responsive') %></td>
         <td><%= link_to player.name, player_path(player) %></td>
 
-        <% if @logger_player && @logger_player.role == 'admin' %>
+        <% if @logged_player && @logged_player.role == 'admin' %>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_player_path(player), :class => 'btn btn-mini' %>
@@ -33,7 +33,7 @@
     <% end %>
   </tbody>
 </table>
- <% if @logger_player && @logger_player.role == 'admin' %>
+ <% if @logged_player && @logged_player.role == 'admin' %>
   <%= link_to t('.new', :default => t("helpers.links.new")),
               new_player_path,
               :class => 'btn btn-primary' %>
