@@ -1,7 +1,7 @@
 class PlayersController < ApplicationController
   skip_before_filter :authorize, only: [:new, :create]
-  before_action :set_player, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_player
+  
   # GET /players
   # GET /players.json
   def index
@@ -29,7 +29,11 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       if @player.save
-        format.html { redirect_to login_url, notice: "Giocatore #{ @player.name } creato correttamente. Accedere per continuare." }
+        if @logged_player
+          format.html { redirect_to players_url, notice: "Giocatore #{ @player.name } creato correttamente. Accedere per continuare." }
+        else
+          format.html { redirect_to login_url, notice: "Giocatore #{ @player.name } creato correttamente. Accedere per continuare." }
+        end
         format.json { render action: 'show', status: :created, location: @player }
       else
         format.html { render action: 'new' }
@@ -65,11 +69,17 @@ class PlayersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_player
-      @player = Player.find(params[:id])
+      if params[:id]
+        @player = Player.find(params[:id])
+      else
+        @player = Player.new
+      end
+      
+      @logged_player = current_logged_player
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:name, :password, :password_confirmation, :avatar_url)
+      params.require(:player).permit(:name, :password, :password_confirmation, :avatar_url, :role)
     end
 end

@@ -23,10 +23,19 @@
       <%= f.text_field :avatar_url, :class => 'text_field' %>
     </div>
   </div>
+  
+  <% if @logged_player && @logged_player.role == "admin"%>
+    <div class="control-group">
+      <%= f.label :role, 'Ruolo', :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :role, Player::ROLES, :class => 'text_field' %>
+      </div>
+    </div>
+  <% end %>
 
   <div class="form-actions">
     <%= f.submit 'Salva', :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("Annulla")),
-                root_path, :class => 'btn' %>
+                request.referrer, :class => 'btn' %>
   </div>
 <% end %>

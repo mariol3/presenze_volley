@@ -11,5 +11,11 @@ class ApplicationController < ActionController::Base
         redirect_to :home
       end
     end
+    
+    def current_logged_player
+      Player.find(session[:player_id])
+      rescue ActiveRecord::RecordNotFound
+        nil
+    end 
   
 end
