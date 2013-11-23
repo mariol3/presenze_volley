@@ -1,6 +1,6 @@
 <%= form_for @player, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
+    <%= f.label :name, 'Nome', :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :name, :class => 'text_field' %>
     </div>
@@ -12,21 +12,21 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :password_confirmation, :class => 'control-label' %>
+    <%= f.label :password_confirmation, 'Conferma password', :class => 'control-label' %>
     <div class="controls">
       <%= f.password_field :password_confirmation, :class => 'password_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :avatar_url, :class => 'control-label' %>
+    <%= f.label :avatar_url, 'Link immagine profilo', :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :avatar_url, :class => 'text_field' %>
     </div>
   </div>
 
   <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+    <%= f.submit 'Salva', :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("Annulla")),
                 root_path, :class => 'btn' %>
   </div>
 <% end %>
