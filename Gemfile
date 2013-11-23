@@ -46,6 +46,10 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 
 # gem 'protected_attributes'
 
+# Bootstrap
 gem "therubyracer"
 gem "less-rails" 
 gem "twitter-bootstrap-rails"
+
+# Date picker
+gem 'bootstrap-datepicker-rails'

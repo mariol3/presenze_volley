@@ -1,10 +1,10 @@
 class TrainingsController < ApplicationController
-  before_action :set_training, only: [:show, :edit, :update, :destroy]
+  before_action :set_training
 
   # GET /trainings
   # GET /trainings.json
   def index
-    @trainings = Training.all
+    @trainings = Training.order(:date)
   end
 
   # GET /trainings/1
@@ -14,7 +14,6 @@ class TrainingsController < ApplicationController
 
   # GET /trainings/new
   def new
-    @training = Training.new
   end
 
   # GET /trainings/1/edit
@@ -28,7 +27,7 @@ class TrainingsController < ApplicationController
 
     respond_to do |format|
       if @training.save
-        format.html { redirect_to @training, notice: 'Training was successfully created.' }
+        format.html { redirect_to trainings_url, notice: 'Allenamento creato correttamente' }
         format.json { render action: 'show', status: :created, location: @training }
       else
         format.html { render action: 'new' }
@@ -42,7 +41,7 @@ class TrainingsController < ApplicationController
   def update
     respond_to do |format|
       if @training.update(training_params)
-        format.html { redirect_to @training, notice: 'Training was successfully updated.' }
+        format.html { redirect_to @training, notice: 'Allenamento aggiornato correttamente' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -64,7 +63,13 @@ class TrainingsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_training
-      @training = Training.find(params[:id])
+      if params[:id]
+        @training = Training.find(params[:id])
+      else
+        @training = Training.new
+      end
+      
+      @logged_player = current_logged_player
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
