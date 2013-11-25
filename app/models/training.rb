@@ -1,6 +1,6 @@
 class Training < ActiveRecord::Base
-  has_many :participation
-  has_many :player, through: :participation
+  has_many :participations
+  has_many :players, through: :participations
   
   validates :date, uniqueness: true, presence: true
 

@@ -2,8 +2,8 @@ class Player < ActiveRecord::Base
   ROLES = %w[user admin] #order in ascendent level of ability
 
   before_save :default_values
-  has_many :participation
-  has_many :training, through: :participation
+  has_many :participations
+  has_many :trainings, through: :participations
   
   validates :name, presence: true, uniqueness: true
   
@@ -18,4 +18,5 @@ class Player < ActiveRecord::Base
       self.role = ROLES[0] # lowest level of ability
     end
   end
+
 end

@@ -25,10 +25,13 @@ class ParticipationsController < ApplicationController
   # POST /participations.json
   def create
     @participation = Participation.new(participation_params)
+    #@participation.player = Player.find(params[:player_id])
+    #@participation.training = Training.find(params[:training_id])
+    #@participation.present = params[:present]
 
     respond_to do |format|
       if @participation.save
-        format.html { redirect_to @participation, notice: 'Participation was successfully created.' }
+        format.html { redirect_to trainings_path }
         format.json { render action: 'show', status: :created, location: @participation }
       else
         format.html { render action: 'new' }
@@ -42,7 +45,7 @@ class ParticipationsController < ApplicationController
   def update
     respond_to do |format|
       if @participation.update(participation_params)
-        format.html { redirect_to @participation, notice: 'Participation was successfully updated.' }
+        format.html { redirect_to trainings_path }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -69,6 +72,6 @@ class ParticipationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def participation_params
-      params.require(:participation).permit(:player_id, :training_id)
+      params.require(:participation).permit(:player_id, :training_id, :present)
     end
 end

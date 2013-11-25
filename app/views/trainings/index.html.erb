@@ -6,13 +6,26 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:date) %></th>
+      <th>Conferma presenza</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @trainings.each do |training| %>
       <tr>
-        <td><%= training.date %></td>
+        <td><%= (l training.date, format: :custom).titleize %></td>
+        <td>
+            <% 
+            participation = training.participations.where(player_id: @logged_player.id)
+            if participation.size == 0 
+              participation = Participation.new(player_id: @logged_player.id, training_id: training.id)
+            else
+              participation = participation[0]
+            end
+            
+            %>
+              <%= render partial: 'participation_buttons', locals: {participation: participation, present: true} %>
+              <%= render partial: 'participation_buttons', locals: {participation: participation, present: false} %>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_training_path(training), :class => 'btn btn-mini' %>

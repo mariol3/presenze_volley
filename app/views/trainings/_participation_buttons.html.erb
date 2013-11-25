@@ -1,0 +1,21 @@
+<%= form_for(participation) do |f| %>
+
+  <%= f.hidden_field :player_id %>
+  <%= f.hidden_field :training_id %>
+  <%= f.hidden_field :present, value: present %>
+
+  <% 
+    btn_class = 'btn'
+    if participation.present.nil?
+      btn_class = "#{btn_class} btn-primary"
+    else
+      if present
+        btn_class = (participation.present && "#{btn_class} btn-success") || "#{btn_class} btn-primary"
+      else
+        btn_class = (!participation.present && "#{btn_class} btn-danger") || "#{btn_class} btn-primary"
+      end
+    end
+   %>
+
+  <%= f.submit (present && 'Ci sono') || 'Non ci sono', class: "#{btn_class}" %>
+<% end %>

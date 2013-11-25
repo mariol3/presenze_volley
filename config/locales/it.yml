@@ -34,6 +34,7 @@ it:
       default: ! '%d/%m/%Y'
       long: ! '%d %B %Y'
       short: ! '%d %b'
+      custom: ! '%A %e %B %Y'
     month_names:
     -
     - gennaio
