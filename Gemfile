@@ -59,3 +59,6 @@ gem "twitter-bootstrap-rails"
 
 # Date picker
 gem 'bootstrap-datepicker-rails'
+
+# Paperclip for user avatars
+gem "paperclip", "~> 3.0"

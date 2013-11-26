@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-  skip_before_filter :authorize, only: [:new, :create]
+  skip_before_filter :authorize, only: [:new, :create] 
   before_action :set_player
   
   # GET /players
@@ -80,6 +80,6 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:name, :password, :password_confirmation, :avatar_url, :role)
+      params.require(:player).permit(:name, :password, :password_confirmation, :avatar, :role)
     end
 end

@@ -1,6 +1,6 @@
 class NextTrainingController < ApplicationController
   def index
-    @next_training = Training.order(:date).first
+    @next_training = Training.where("date >= ?", Date.today).order(:date).first
     if @next_training
       @participants_players = @next_training.participations.where(present: true).count
       @bar_color_class =  if @participants_players < 10

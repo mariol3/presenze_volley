@@ -15,7 +15,7 @@
   <tbody>
     <% @players.each do |player| %>
       <tr>
-        <td><%= image_tag(player.avatar_url || 'default_avatar.png', class: 'img-responsive') %></td>
+        <td><%= image_tag(player.avatar.url(:thumb), class: 'img-responsive') %></td>
         <td><%= link_to player.name, player_path(player) %></td>
 
         <% if @logged_player && @logged_player.role == 'admin' %>
