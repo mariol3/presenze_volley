@@ -4,7 +4,7 @@ class TrainingsController < ApplicationController
   # GET /trainings
   # GET /trainings.json
   def index
-    @trainings = Training.order(:date)
+    @trainings = Training.where("date >= ?", Date.today).order(:date)
   end
 
   # GET /trainings/1
