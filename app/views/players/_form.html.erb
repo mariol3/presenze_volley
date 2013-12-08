@@ -17,12 +17,14 @@
       <%= f.password_field :password_confirmation, :class => 'password_field' %>
     </div>
   </div>
+  <!-- removed for heroku
   <div class="control-group">
     <%= f.label :avatar, 'Immagine profilo', :class => 'control-label' %>
     <div class="controls">
       <%= f.file_field :avatar, :class => 'file_field' %>
     </div>
   </div>
+  -->
   
   <% if @logged_player && @logged_player.role == "admin"%>
     <div class="control-group">

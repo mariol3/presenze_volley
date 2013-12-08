@@ -10,6 +10,7 @@ Player.create(name: 'admin',
               password: 'admin',
               password_confirmation: 'admin',
               role: 'admin')
+=begin
 Player.create(name: 'player1', 
               password: '1',
               password_confirmation: '1',
@@ -58,6 +59,7 @@ Player.create(name: 'player12',
               password: '12',
               password_confirmation: '12',
               role: 'user')
+=end
               
 Training.delete_all
 Participation.delete_all
