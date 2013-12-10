@@ -17,7 +17,7 @@
         <td><%= (l training.date, format: :custom).titleize %></td>
         <td>
           <% if training.note %>
-            <a href="#" class="btn btn-primary popover-note" data-placement="top" data-toggle="popover" data-content="<%= training.note %>">Nota</a>
+            <a class="btn btn-primary popover-note" data-placement="top" data-toggle="popover" data-content="<%= training.note %>">Nota</a>
           <% end %>
         </td>
         <td>
