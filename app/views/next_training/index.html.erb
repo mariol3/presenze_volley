@@ -11,7 +11,7 @@
 		<% @all_participants.each do |participation| %>
 		<tr class="<%= participation.present ? 'success' : 'error' %>">
 			<td>
-				<p class="text-center"><%= participation.player.name %></p>
+				<div class="text-center"><%= participation.player.name %></div>
 			</td>
 		</tr>
 		<% end %>
