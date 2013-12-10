@@ -41,7 +41,7 @@ class TrainingsController < ApplicationController
   def update
     respond_to do |format|
       if @training.update(training_params)
-        format.html { redirect_to @training, notice: 'Allenamento aggiornato correttamente' }
+        format.html { redirect_to trainings_url, notice: 'Allenamento aggiornato correttamente' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -74,6 +74,6 @@ class TrainingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def training_params
-      params.require(:training).permit(:date)
+      params.require(:training).permit(:date, :note)
     end
 end

@@ -1,6 +1,11 @@
 <% if @next_training %>
   <div class="page-header">
     <h3>Percentuale di partecipanti al prossimo allenamento di <%= (l @next_training.date, format: :custom).titleize %></h3>
+    <% if @next_training.note %>
+      <h5 class="text-info lead">
+        Nota: <%= @next_training.note %>
+      </h5>
+    <% end %>
   </div>
 
   <div class="progress progress-striped active <%= @bar_color_class %>">
