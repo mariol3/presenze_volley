@@ -2,9 +2,20 @@
   <div class="page-header">
     <h3>Percentuale di partecipanti al prossimo allenamento di <%= (l @next_training.date, format: :custom).titleize %></h3>
   </div>
+
   <div class="progress progress-striped active <%= @bar_color_class %>">
-    <div class="bar" style="width: <%= @players_percentage %>%;"><%= @participants_players %> [<%= @players_percentage %>%]</div>
+    <div class="bar" style="width: <%= @players_percentage %>%;"><%= @participants_players.count %> [<%= @players_percentage %>%]</div>
   </div>
+	<table class="table table-striped table-bordered table-condensed">
+		<caption><h3>Conferme</h3></caption>
+		<% @all_participants.each do |participation| %>
+		<tr class="<%= participation.present ? 'success' : 'error' %>">
+			<td>
+				<p class="text-center"><%= participation.player.name %></p>
+			</td>
+		</tr>
+		<% end %>
+	</table>
 <% else %>
 <div class="page-header">
   <h3>Ancora nessun allenamento disponibile</h3>
