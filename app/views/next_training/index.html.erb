@@ -1,7 +1,7 @@
 <% if @next_training %>
   <div class="page-header">
     <h3>Percentuale di partecipanti al prossimo allenamento di <%= (l @next_training.date, format: :custom).titleize %></h3>
-    <% if @next_training.note %>
+    <% if @next_training.note && !@next_training.note.empty? %>
       <h5 class="text-info lead">
         Nota: <%= @next_training.note %>
       </h5>
