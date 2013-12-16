@@ -32,6 +32,9 @@
             %>
               <%= render partial: 'participation_buttons', locals: {participation: participation, present: true} %>
               <%= render partial: 'participation_buttons', locals: {participation: participation, present: false} %>
+      	<td>
+      			<%= render partial: 'shared/note_form', locals: {participation: participation} %>
+      	</td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_training_path(training), :class => 'btn btn-mini' %>

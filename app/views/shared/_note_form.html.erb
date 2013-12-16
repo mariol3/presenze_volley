@@ -1,0 +1,16 @@
+<%= form_for(participation) do |f| %>
+  
+  <%= f.hidden_field :player_id %>
+  <%= f.hidden_field :training_id %>
+  <%= f.hidden_field :present %>
+  
+  <div class="control-group">
+	  <div class="controls">
+	  	<%= f.text_area :note %>
+		</div>
+	</div>
+  
+  <div class="actions">
+    <%= f.submit 'Ok', class: 'btn btn-primary' %>
+  </div>
+<% end %>
