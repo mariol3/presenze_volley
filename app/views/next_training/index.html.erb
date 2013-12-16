@@ -9,7 +9,7 @@
   </div>
 
   <div class="progress progress-striped active <%= @bar_color_class %>">
-    <div class="bar" style="width: <%= @players_percentage %>%;"><%= @participants_players.count %> [<%= @players_percentage %>%]</div>
+    <div class="bar" style="width: <%= @players_percentage > 100 ? 100 : @players_percentage %>%;"><%= @participants_players.count %> [<%= @players_percentage %>%]</div>
   </div>
   
   <% if @all_participants.count > 0 %>

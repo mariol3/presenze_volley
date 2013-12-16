@@ -11,7 +11,7 @@ class NextTrainingController < ApplicationController
                           else
                             'progress-success'
                           end
-      @players_percentage = (@participants_players.count * 100.0 / Player.all.count).round
+      @players_percentage = (@participants_players.count * 100.0 / 12).round
     end
   end
 end
