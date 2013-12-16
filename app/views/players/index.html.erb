@@ -5,8 +5,8 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th class="span2"></th>
+      <th class="span10"><%= model_class.human_attribute_name(:name) %></th>
       <% if @logged_player && @logged_player.role == 'admin' %>
         <th><%=t '.actions', :default => t("helpers.actions") %></th>
       <% end %>
