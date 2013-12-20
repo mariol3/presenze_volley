@@ -25,16 +25,13 @@ class ParticipationsController < ApplicationController
   # POST /participations.json
   def create
     @participation = Participation.new(participation_params)
-    #@participation.player = Player.find(params[:player_id])
-    #@participation.training = Training.find(params[:training_id])
-    #@participation.present = params[:present]
 
     respond_to do |format|
       if @participation.save
         format.html { redirect_to trainings_path }
         format.json { render action: 'show', status: :created, location: @participation }
       else
-        format.html { render action: 'new' }
+        format.html { redirect_to trainings_path }
         format.json { render json: @participation.errors, status: :unprocessable_entity }
       end
     end
@@ -48,7 +45,7 @@ class ParticipationsController < ApplicationController
         format.html { redirect_to trainings_path }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { redirect_to trainings_path }
         format.json { render json: @participation.errors, status: :unprocessable_entity }
       end
     end
