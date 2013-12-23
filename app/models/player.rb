@@ -5,7 +5,7 @@ class Player < ActiveRecord::Base
   has_many :participations, dependent: :destroy
   has_many :trainings, through: :participations
   
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true, length: { maximum: 25 }
   
   has_secure_password
   

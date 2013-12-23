@@ -17,7 +17,7 @@
         <td><%= (l training.date, format: :custom).titleize %></td>
         <td>
           <% if training.note && !training.note.empty? %>
-            <a class="btn btn-primary popover-note" data-placement="top" data-toggle="popover" data-content="<%= training.note %>">Nota</a>
+            <a class="btn btn-primary popover-marker popover-note" data-placement="top" data-toggle="popover" data-content="<%= training.note %>">Nota</a>
           <% end %>
         </td>
         <td>
@@ -32,9 +32,7 @@
             %>
               <%= render partial: 'participation_buttons', locals: {participation: participation, present: true} %>
               <%= render partial: 'participation_buttons', locals: {participation: participation, present: false} %>
-      	<td>
-      			<%= render partial: 'shared/note_form', locals: {participation: participation} %>
-      	</td>
+              <%= render partial: 'shared/note_form', locals: {participation: participation, updated_participation_id: flash[:participation_id]} unless participation.present.nil? %>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_training_path(training), :class => 'btn btn-mini' %>
@@ -58,6 +56,18 @@
             
 <script>
   $(document).ready(function () {
+    /* create popovers */
     $('.popover-note').popover();
+    
+    $('.participation-popover-note').each(function () {
+      $(this).popover({
+        html: true,
+        content: $(this)  .next('.participation-note-container').html(),
+      });
+    });
+    
+    /* Show popover of updated participation record */
+    $('.participation-focus-popover').popover('show');
+
   });
 </script>
