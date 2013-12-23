@@ -1,19 +1,12 @@
 == Presenze Volley
 
-Semplice software per la gestione degli allenamenti di una squadra.
-Comprende utenti, allenamenti e interfacce semplici e veloci.
+Simple web application to manage trainings of my volley ball team while learning Rails.
 
 == Installazione
-* Clonare il progetto
+* Clone the project;
 
-* <code>bundle</code>
+* Run <code>bundle</code> to install all required gems;
 
-* <code>rake db:migrate</code>
+* Run <code>rake db:migrate</code> to apply all db migrations;
 
-* Per avere iniziali (compreso admin) rake db:seed
-
-== TODO
-* Gestione dei ruoli utente e permessi sulle pagine. E' ancora possibile arrivare a pagine
-a cui non si dovrebbe arrivare con dei semplici URL mirati.
-
-* Check su input data allenamento
+* Run <code>rake db:seed</code> to create an admin user to start using the app.
