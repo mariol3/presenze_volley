@@ -2,7 +2,7 @@
 
 Simple web application to manage trainings of my volley ball team while learning Rails.
 
-== Installazione
+== Installation
 * Clone the project;
 
 * Run <code>bundle</code> to install all required gems;
