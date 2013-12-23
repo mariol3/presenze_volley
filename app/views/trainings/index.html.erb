@@ -2,53 +2,59 @@
 <div class="page-header">
   <h1>Elenco allenamenti</h1>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:date) %></th>
-      <th><%= model_class.human_attribute_name(:note) %></th>
-      <th>Conferma presenza</th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @trainings.each do |training| %>
-      <tr>
-        <td><%= (l training.date, format: :custom).titleize %></td>
-        <td>
-          <% if training.note && !training.note.empty? %>
-            <a class="btn btn-primary popover-marker popover-note" data-placement="top" data-toggle="popover" data-content="<%= training.note %>">Nota</a>
-          <% end %>
-        </td>
-        <td>
-            <% 
-            participation = training.participations.where(player_id: @logged_player.id)
-            if participation.size == 0 
-              participation = Participation.new(player_id: @logged_player.id, training_id: training.id)
-            else
-              participation = participation[0]
-            end
-            
-            %>
-              <%= render partial: 'participation_buttons', locals: {participation: participation, present: true} %>
-              <%= render partial: 'participation_buttons', locals: {participation: participation, present: false} %>
-              <%= render partial: 'shared/note_form', locals: {participation: participation, updated_participation_id: flash[:participation_id]} unless participation.present.nil? %>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_training_path(training), :class => 'btn btn-mini' %>
 
-          <% if @logged_player && @logged_player.role == 'admin' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      training_path(training),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        <% end %>
-        </td>
+<% if @trainings.count > 0 %>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= model_class.human_attribute_name(:date) %></th>
+        <th><%= model_class.human_attribute_name(:note) %></th>
+        <th>Conferma presenza</th>
+        <th><%=t '.actions', :default => t("helpers.actions") %></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @trainings.each do |training| %>
+        <tr>
+          <td><%= (l training.date, format: :custom).titleize %></td>
+          <td>
+            <% if training.note && !training.note.empty? %>
+              <a class="btn btn-primary popover-marker popover-note" data-placement="top" data-toggle="popover" data-content="<%= training.note %>">Nota</a>
+            <% end %>
+          </td>
+          <td>
+              <% 
+              participation = training.participations.where(player_id: @logged_player.id)
+              if participation.size == 0 
+                participation = Participation.new(player_id: @logged_player.id, training_id: training.id)
+              else
+                participation = participation[0]
+              end
+            
+              %>
+                <%= render partial: 'participation_buttons', locals: {participation: participation, present: true} %>
+                <%= render partial: 'participation_buttons', locals: {participation: participation, present: false} %>
+                <%= render partial: 'shared/note_form', locals: {participation: participation, updated_participation_id: flash[:participation_id]} unless participation.present.nil? %>
+          <td>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_training_path(training), :class => 'btn btn-mini' %>
+
+            <% if @logged_player && @logged_player.role == 'admin' %>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                        training_path(training),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-mini btn-danger' %>
+          <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% end %>
+
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_training_path,
