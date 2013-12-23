@@ -1,0 +1,20 @@
+<a class="btn btn-primary popover-marker participation-popover-note <%= updated_participation_id == participation.id ? 'participation-focus-popover' : '' %>" data-placement="bottom" data-toggle="popover">Aggiungi nota</a>
+
+<div class="participation-note-container" style="display: none">
+  <%= form_for participation, html: { class: 'no-margin' } do |f| %>
+  
+    <%= f.hidden_field :player_id %>
+    <%= f.hidden_field :training_id %>
+    <%= f.hidden_field :present %>
+  
+    
+    <div class="controls">
+      <%= f.label :note, 'Max 140 caratteri'%>
+    	<%= f.text_area :note, rows: 5, columns: 80 %>
+  	</div>
+  
+    <div>
+      <%= f.submit 'Pubblica', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

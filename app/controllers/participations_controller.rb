@@ -28,10 +28,10 @@ class ParticipationsController < ApplicationController
 
     respond_to do |format|
       if @participation.save
-        format.html { redirect_to trainings_path }
+        format.html { redirect_to trainings_path, flash: { participation_id: @participation.id } }
         format.json { render action: 'show', status: :created, location: @participation }
       else
-        format.html { redirect_to trainings_path }
+        format.html { redirect_to trainings_path, alert: 'Errore, la nota non deve superare i 140 caratteri.' }
         format.json { render json: @participation.errors, status: :unprocessable_entity }
       end
     end
@@ -42,10 +42,10 @@ class ParticipationsController < ApplicationController
   def update
     respond_to do |format|
       if @participation.update(participation_params)
-        format.html { redirect_to trainings_path }
+        format.html { redirect_to trainings_path, flash: { participation_id: @participation.id } }
         format.json { head :no_content }
       else
-        format.html { redirect_to trainings_path }
+        format.html { redirect_to trainings_path, alert: 'Errore, la nota non deve superare i 140 caratteri.' }
         format.json { render json: @participation.errors, status: :unprocessable_entity }
       end
     end
@@ -69,6 +69,6 @@ class ParticipationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def participation_params
-      params.require(:participation).permit(:player_id, :training_id, :present)
+      params.require(:participation).permit(:player_id, :training_id, :present, :note)
     end
 end
