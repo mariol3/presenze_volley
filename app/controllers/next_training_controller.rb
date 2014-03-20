@@ -13,7 +13,7 @@ class NextTrainingController < ApplicationController
                           end
       @players_percentage = (@participants_players.count * 100.0 / 12).round
       
-      all_participants_players = @all_participants.map {|p| p.player}
+      all_participants_players = @participants_players.map {|p| p.player}
       @not_confirmed_players = Player.where.not(id: all_participants_players.collect(&:id)).order(:name)
     end
   end
