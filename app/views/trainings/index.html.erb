@@ -61,20 +61,55 @@
             :class => 'btn btn-primary' %>
             
 <script>
-  $(document).ready(function () {
-    /* create popovers */
-    $('.popover-note').popover();
-    
-    $('.participation-popover-note').each(function () {
-      $(this).popover({
-        html: true,
-        content: $(this)  .next('.participation-note-container').html(),
-        placement: 'top'
-      });
-    });
-    
-    /* Show popover of updated participation record */
-    $('.participation-focus-popover').popover('show');
+    $(document).ready(function () {
+        var isPopoverVisible = false;
+        var isPopoverClickedAway = false;
 
-  });
+        var popoverClicked = function (e) {
+            $(this).popover('show');
+            isPopoverClickedAway = false;
+            isPopoverVisible = true;
+            e.preventDefault();
+        };
+
+        var hideClassPopover = function (popoverClass) {
+            $('.' + popoverClass).each(function () {
+                $(this).popover('hide');
+            });
+        }
+
+        var hideAllPopovers = function() {
+            hideClassPopover('popover-note');
+            hideClassPopover('participation-popover-note');
+        };
+
+        /* create normal popovers */
+        $('.popover-note').popover({
+            html: true,
+            trigger: 'manual'
+        }).on('click', popoverClicked);
+
+        /* create participations popover */
+        $('.participation-popover-note').each(function () {
+            $(this).popover({
+                html: true,
+                content: $(this).next('.participation-note-container').html(),
+                placement: 'top',
+                trigger: 'manual'
+            }).on('click', popoverClicked);
+        });
+
+        /* Show popover of updated participation record */
+        $('.participation-focus-popover').popover('show');
+
+        $(document).on('click', function() {
+            if(isPopoverVisible && isPopoverClickedAway) {
+                hideAllPopovers();
+                isPopoverVisible = isPopoverClickedAway = false;
+            }
+            else {
+                isPopoverClickedAway = true;
+            }
+        });
+    });
 </script>

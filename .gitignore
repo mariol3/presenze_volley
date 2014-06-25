@@ -22,3 +22,7 @@
 
 # Ignore Aptana project file
 .project
+
+# Ignore Intellij IDEA files
+.idea/
+*.iml
