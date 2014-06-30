@@ -65,10 +65,21 @@
         var isPopoverVisible = false;
         var isPopoverClickedAway = false;
 
+        var isVisible = function (popover) {
+            return popover.next('.popover').length != 0;
+        };
+
+        var targetIsPopover = function (target) {
+            return target.hasClass('popover-marker');
+        };
+
         var popoverClicked = function (e) {
-            $(this).popover('show');
-            isPopoverClickedAway = false;
-            isPopoverVisible = true;
+            if (isVisible($(this))) {
+                $(this).popover('hide');
+            }
+            else {
+                $(this).popover('show');
+            }
             e.preventDefault();
         };
 
@@ -76,7 +87,7 @@
             $('.' + popoverClass).each(function () {
                 $(this).popover('hide');
             });
-        }
+        };
 
         var hideAllPopovers = function() {
             hideClassPopover('popover-note');
@@ -102,13 +113,9 @@
         /* Show popover of updated participation record */
         $('.participation-focus-popover').popover('show');
 
-        $(document).on('click', function() {
-            if(isPopoverVisible && isPopoverClickedAway) {
+        $(document).on('click', function(e) {
+            if (targetIsPopover($(e.target)) == false) {
                 hideAllPopovers();
-                isPopoverVisible = isPopoverClickedAway = false;
-            }
-            else {
-                isPopoverClickedAway = true;
             }
         });
     });
