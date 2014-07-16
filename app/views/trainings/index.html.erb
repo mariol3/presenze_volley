@@ -69,8 +69,12 @@
             return popover.next('.popover').length != 0;
         };
 
+        var targetIsPopoverContent = function (target) {
+            return (target.hasClass('popover-content')) || (target.parents('.popover-content').length > 0);
+        };
+
         var targetIsPopover = function (target) {
-            return target.hasClass('popover-marker');
+            return (target.hasClass('popover-marker')) || targetIsPopoverContent(target);
         };
 
         var popoverClicked = function (e) {
@@ -114,6 +118,7 @@
         $('.participation-focus-popover').popover('show');
 
         $(document).on('click', function(e) {
+            console.log(e.target);
             if (targetIsPopover($(e.target)) == false) {
                 hideAllPopovers();
             }
