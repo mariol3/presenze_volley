@@ -1,6 +1,7 @@
 PresenzeVolley::Application.routes.draw do
  
   get 'next' => 'next_training#index'
+  get 'next/:id' => 'next_training#index'
   
   controller :welcome do
     get 'home' => :index
