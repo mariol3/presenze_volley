@@ -17,7 +17,7 @@
     <tbody>
       <% @trainings.each do |training| %>
         <tr>
-          <td><%= link_to (l training.date, format: :custom).titleize, next_path(training) %></td>
+          <td><%= link_to (l training.date, format: :custom).titleize, training_participations_path(training) %></td>
           <td>
             <% if training.note && !training.note.empty? %>
               <a class="btn btn-primary popover-marker popover-note" data-placement="top" data-toggle="popover" data-content="<%= training.note %>">Nota</a>
