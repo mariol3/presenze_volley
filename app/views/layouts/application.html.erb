@@ -63,10 +63,10 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <% if session[:player_id]%>
+              <% if current_logged_player %>
                 <!-- QUANDO LOGGATI -->
                 <li class="nav-header">Menu</li>
-                <li><%= link_to "Profilo personale", edit_player_path(id: session[:player_id])  %></li>
+                <li><%= link_to "Profilo personale", edit_player_path(id: current_logged_player.id)  %></li>
                 <li><%= link_to "Logout", logout_path, method: :delete  %></li>
               <% else %>
                 <li class="nav-header">Effettuare il login</li>
