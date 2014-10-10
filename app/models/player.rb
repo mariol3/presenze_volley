@@ -2,6 +2,7 @@ class Player < ActiveRecord::Base
   ROLES = %w[user admin] #order in ascendent level of ability
 
   before_save :default_values
+  before_create { generate_token(:auth_token) }
   has_many :participations, dependent: :destroy
   has_many :trainings, through: :participations
   
@@ -21,6 +22,12 @@ class Player < ActiveRecord::Base
     if(!self.role || self.role.empty?)
       self.role = ROLES[0] # lowest level of ability
     end
+  end
+
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while Player.exists?(column => self[column])
   end
 
 end

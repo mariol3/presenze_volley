@@ -13,6 +13,12 @@
         <%= password_field_tag :password, nil, :class => 'password_field' %>
       </div>
     </div>
+    <div class="control-group">
+      <%= label_tag :remember_me, 'Remember me', :class => 'control-label' %>
+      <div class="controls">
+          <%= check_box_tag :remember_me, 1, params[:remember_me], :class => 'password_field' %>
+      </div>
+    </div>
   </fieldset>
   
   <div class="form-actions">
