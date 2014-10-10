@@ -8,7 +8,12 @@ class SessionsController < ApplicationController
     player = Player.find_by_name(params[:name])
   
     if player and player.authenticate(params[:password])
-      session[:player_id] = player.id
+      if params[:remember_me]
+        cookies.permanent[:auth_token] = player.auth_token
+      else
+        cookies[:auth_token] = player.auth_token
+      end
+
       redirect_to trainings_url
     else
       redirect_to login_url, alert: "Nome e/o password non corretti"
@@ -16,7 +21,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:player_id] = nil
+    cookies.delete(:auth_token)
     redirect_to root_url, notice: "Logout eseguito correttamente"
   end
 end
