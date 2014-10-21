@@ -28,4 +28,15 @@ PresenzeVolley::Application.configure do
   config.assets.debug = true
   
   Paperclip.options[:command_path] = "/opt/local/bin/convert"
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      :address              => "smtp.gmail.com",
+      :port                 => 587,
+      :domain               => 'example.com',
+      :user_name            => 'presenze.volley@gmail.com',
+      :password             => 'presenzevolleyrulez',
+      :authentication       => 'plain',
+      :enable_starttls_auto => true
+  }
 end
