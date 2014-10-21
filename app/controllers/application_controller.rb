@@ -7,15 +7,16 @@ class ApplicationController < ActionController::Base
   protected
   
     def authorize
-      unless Player.find_by_id(session[:player_id])
+      unless current_logged_player
         redirect_to :home
       end
     end
     
     def current_logged_player
-      Player.find(session[:player_id])
+      Player.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
       rescue ActiveRecord::RecordNotFound
         nil
-    end 
+    end
+    helper_method :current_logged_player
   
 end
