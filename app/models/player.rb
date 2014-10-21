@@ -1,3 +1,11 @@
+class EmailValidator < ActiveModel::EachValidator
+  def validate_each(record, attribute, value)
+    unless value =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+      record.errors[attribute] << (options[:message] || "is not an email")
+    end
+  end
+end
+
 class Player < ActiveRecord::Base
   ROLES = %w[user admin] #order in ascendent level of ability
 
@@ -7,6 +15,7 @@ class Player < ActiveRecord::Base
   has_many :trainings, through: :participations
   
   validates :name, presence: true, uniqueness: true, length: { maximum: 25 }
+  validates :email, confirmation: true, presence:true, uniqueness: true, email: true
   
   has_secure_password
   
