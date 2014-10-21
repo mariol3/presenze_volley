@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
       Player.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
       rescue ActiveRecord::RecordNotFound
         nil
-    end 
+    end
+    helper_method :current_logged_player
   
 end
