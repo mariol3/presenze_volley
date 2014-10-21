@@ -29,6 +29,8 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       if @player.save
+        PlayerMailer.welcome_email(@player).deliver
+
         if @logged_player
           format.html { redirect_to players_url, notice: 'Il tuo profilo e\' stato creato. Accedi per continuare.' }
         else
