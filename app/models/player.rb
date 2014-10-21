@@ -15,7 +15,7 @@ class Player < ActiveRecord::Base
   has_many :trainings, through: :participations
   
   validates :name, presence: true, uniqueness: true, length: { maximum: 25 }
-  validates :email, confirmation: true, presence:true, uniqueness: true, email: true
+  validates :email, presence:true, uniqueness: true, email: true
   
   has_secure_password
   

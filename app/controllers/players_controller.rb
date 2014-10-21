@@ -30,9 +30,9 @@ class PlayersController < ApplicationController
     respond_to do |format|
       if @player.save
         if @logged_player
-          format.html { redirect_to players_url, notice: "Giocatore #{ @player.name } creato correttamente. Accedere per continuare." }
+          format.html { redirect_to players_url, notice: 'Il tuo profilo e\' stato creato. Accedi per continuare.' }
         else
-          format.html { redirect_to login_url, notice: "Giocatore #{ @player.name } creato correttamente. Accedere per continuare." }
+          format.html { redirect_to login_url, notice: 'Il tuo profilo e\' stato creato. Accedi per continuare.' }
         end
         format.json { render action: 'show', status: :created, location: @player }
       else
@@ -47,7 +47,7 @@ class PlayersController < ApplicationController
   def update
     respond_to do |format|
       if @player.update(player_params)
-        format.html { redirect_to players_url, notice: "Player #{ @player.name } was successfully updated." }
+        format.html { redirect_to edit_player_url(@player.id), notice: 'Profilo aggiornato.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

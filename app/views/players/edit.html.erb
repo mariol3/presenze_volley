@@ -2,4 +2,20 @@
 <div class="page-header">
   <h1>Modifica profilo giocatore</h1>
 </div>
-<%= render :partial => 'form' %>
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active">
+        <a href="#profile" role="tab" data-toggle="tab">Informazioni di profilo</a>
+    </li>
+    <li>
+        <a href="#password" role="tab" data-toggle="tab">Gestione password</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane active" id="profile">
+        <%= render :partial => 'profile_form' %>
+    </div>
+    <div class="tab-pane" id="password">
+        <%= render :partial => 'password_form' %>
+    </div>
+</div>
