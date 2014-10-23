@@ -48,6 +48,13 @@ class PlayersController < ApplicationController
   # PATCH/PUT /players/1.json
   def update
     respond_to do |format|
+      if params[:old_password]
+        if !@player.authenticate(params[:old_password])
+          format.html { redirect_to edit_player_url(@player.id), alert: 'Password vecchia non corretta.' }
+          format.json { head :no_content }
+        end
+      end
+
       if @player.update(player_params)
         format.html { redirect_to edit_player_url(@player.id), notice: 'Profilo aggiornato.' }
         format.json { head :no_content }
