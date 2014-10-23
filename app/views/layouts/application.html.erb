@@ -38,45 +38,57 @@
   </head>
   <body>
 
-    <div class="navbar navbar-fluid-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="<%= root_path %>">Gestione Allenamenti</a>
-          <div class="container-fluid nav-collapse pull-left">
-            <ul class="nav">
-              <li><%= link_to "Allenamenti", trainings_path  %></li>
-              <li><%= link_to "Giocatori", players_path  %></li>
-              <li><%= link_to "Quanti al prossimo?", next_path  %></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-          <div class="container-fluid pull-right">
-            <% if current_logged_player %>
-            <div class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" style="padding: 10px 15px; display: block;">
-                    <span class="icon-user"></span> <%= current_logged_player.name %>
-                    <b class="caret"></b>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </a>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                    <li>
-                        <%= link_to "Modifica profilo", edit_player_path(id: current_logged_player.id) %>
-                    <li>
-                        <%= link_to "Logout", logout_path, method: :delete  %>
-                    </li>
-                </ul>
+
+                <a class="brand" href="#">Presenze volley</a>
+
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li>
+                            <%= link_to "Allenamenti", trainings_path  %>
+                        </li>
+                        <li>
+                            <%= link_to "Giocatori", players_path  %>
+                        </li>
+                        <li>
+                            <%= link_to "Quanti al prossimo?", next_path  %>
+                        </li>
+                    </ul>
+
+                    <ul class="nav pull-right">
+                    <% if current_logged_player %>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" style="padding: 10px 15px; display: block;">
+                                <span class="icon-user"></span> <%= current_logged_player.name %>
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <li>
+                                    <%= link_to "Modifica profilo", edit_player_path(id: current_logged_player.id) %>
+                                </li>
+                                <li>
+                                    <%= link_to "Logout", logout_path, method: :delete  %>
+                                </li>
+                            </ul>
+                        </li>
+                        <% else %>
+                        <li>
+                            <a href="<%= login_path %>" style="padding: 10px 15px; display: block;">
+                                <span class="icon-user"></span> Login
+                            </a>
+                        </li>
+                        <% end %>
+                    </ul>
+                </div>
             </div>
-            <% else %>
-              <a href="<%= login_path %>" style="padding: 10px 15px; display: block;">
-                  <span class="icon-user"></span> Login
-              </a>
-            <% end %>
-          </div>
         </div>
-      </div>
     </div>
 
     <div class="container-fluid">
