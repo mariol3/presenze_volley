@@ -47,35 +47,41 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="<%= root_path %>">Gestione Allenamenti</a>
-          <div class="container-fluid nav-collapse">
+          <div class="container-fluid nav-collapse pull-left">
             <ul class="nav">
               <li><%= link_to "Allenamenti", trainings_path  %></li>
               <li><%= link_to "Giocatori", players_path  %></li>
               <li><%= link_to "Quanti al prossimo?", next_path  %></li>
             </ul>
           </div><!--/.nav-collapse -->
+          <div class="container-fluid pull-right">
+            <% if current_logged_player %>
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" style="padding: 10px 15px; display: block;">
+                    <span class="icon-user"></span> <%= current_logged_player.name %>
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <li>
+                        <%= link_to "Modifica profilo", edit_player_path(id: current_logged_player.id) %>
+                    <li>
+                        <%= link_to "Logout", logout_path, method: :delete  %>
+                    </li>
+                </ul>
+            </div>
+            <% else %>
+              <a href="<%= login_path %>" style="padding: 10px 15px; display: block;">
+                  <span class="icon-user"></span> Login
+              </a>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <% if current_logged_player %>
-                <!-- QUANDO LOGGATI -->
-                <li class="nav-header">Menu</li>
-                <li><%= link_to "Profilo personale", edit_player_path(id: current_logged_player.id)  %></li>
-                <li><%= link_to "Logout", logout_path, method: :delete  %></li>
-              <% else %>
-                <li class="nav-header">Effettuare il login</li>
-                <li><%= link_to 'Login', login_path %>
-              <% end %>              
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-        <div class="span9">
+        <div class="span8 offset2">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
