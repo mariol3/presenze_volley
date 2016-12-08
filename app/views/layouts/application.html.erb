@@ -46,7 +46,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="<%= root_path %>">Gestione Allenamenti</a>
+          <a class="brand" href="<%= root_path %>">Gestione Allenamenti</a><a href="#" class="brand music-control"><i class="icon-play"></i></a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
               <li><%= link_to "Allenamenti", trainings_path  %></li>
@@ -82,11 +82,37 @@
       </div><!--/row-->
 
       <footer>
-        <p>Gestione Allenamenti - <%= l Time.now.in_time_zone('Rome').to_date, format: :year %></p>
+        <p>Gestione Allenamenti - 2013 | <%= l Time.now.in_time_zone('Rome').to_date, format: :year %></p>
         <p class="text-center"><i class="icon-heart"></i></p>
       </footer>
 
     </div> <!-- /container -->
+
+    <% if Time.now.month == 12 %>
+      <audio id="audio-player">
+        <source src="/assets/jinglebells.mp3" >
+      </audio>
+      <script>
+        $(document).ready(function () {
+          var audioPlayer = $('#audio-player')[0];
+
+          $('.music-control').on('click', function (e) {
+            e.preventDefault();
+            if (audioPlayer.paused) {
+              $('i', this).removeClass('icon-play').addClass('icon-pause');
+              audioPlayer.play();
+            } else {
+              $('i', this).removeClass('icon-pause').addClass('icon-play');
+              audioPlayer.pause();
+            }
+          });
+
+          setTimeout(function () { 
+            snowFall.snow(document.body, {round: true, shadow: true, minSize: 6});
+          }, 1500);
+        });
+      </script>
+    <% end %>
 
   </body>
 </html>
