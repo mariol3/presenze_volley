@@ -118,7 +118,6 @@
         $('.participation-focus-popover').popover('show');
 
         $(document).on('click', function(e) {
-            console.log(e.target);
             if (targetIsPopover($(e.target)) == false) {
                 hideAllPopovers();
             }
