@@ -55,11 +55,11 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Bootstrap
 gem "therubyracer"
-gem "less-rails" 
-gem "twitter-bootstrap-rails"
+gem "less-rails", "2.4.2"
+gem "twitter-bootstrap-rails", "2.2.8"
 
 # Date picker
-gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-datepicker-rails', "1.1.1.9"
 
 # Paperclip for user avatars
-gem "paperclip", "~> 3.0"
+gem "paperclip", "3.5.2"
