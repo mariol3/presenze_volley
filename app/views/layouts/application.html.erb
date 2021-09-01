@@ -46,7 +46,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="<%= root_path %>">Gestione Allenamenti</a><a href="#" class="brand music-control"><i class="icon-play"></i></a>
+          <a class="brand" href="<%= root_path %>">Gestione Allenamenti</a>
+          
+          <% if Time.now.month == 12 %>
+          <a href="#" class="brand music-control"><i class="icon-play"></i></a>
+          <% end %>
+          
           <div class="container-fluid nav-collapse">
             <ul class="nav">
               <li><%= link_to "Allenamenti", trainings_path  %></li>

@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20141010133303) do
 
-  create_table "participations", force: true do |t|
+  create_table "participations", force: :cascade do |t|
     t.integer  "player_id"
     t.integer  "training_id"
     t.datetime "created_at"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20141010133303) do
     t.text     "note"
   end
 
-  create_table "players", force: true do |t|
+  create_table "players", force: :cascade do |t|
     t.string   "name"
     t.string   "password_digest"
     t.string   "avatar_url"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20141010133303) do
     t.string   "auth_token"
   end
 
-  create_table "trainings", force: true do |t|
+  create_table "trainings", force: :cascade do |t|
     t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
